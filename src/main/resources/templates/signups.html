@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Signups</title>
+    </head>
+    <body>
+
+        <h1>Signups</h1>
+
+		<ul>
+			<li th:each="signup : ${signups}">
+				<span th:utext="${signup.name}">item</span>
+			</li>
+		</ul>
+
+        <p></p>
+    </body>
+</html>
