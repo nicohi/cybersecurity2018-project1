@@ -24,7 +24,7 @@ After this open "localhost:8080" in your browser.
 
 ## Issue: SQL Injection (OWASP A1)
 Steps to reproduce:
-1. Run webapplication and open it in a web browser (localhost:8080 is the default address)
+1. Run the web application and open it in a web browser (localhost:8080 is the default address)
 2. Click "View signups"
 3. Enter "test" into the "Name" field
 4. Enter " '); DROP TABLE Message; ' " into the "Message" field
@@ -39,7 +39,7 @@ Another option is to remove all single quote symbols before executing the query 
 
 ## Issue: Sensitive Data Exposure (OWASP A3)
 Steps to reproduce:
-1. Run webapplication and open it in a web browser (localhost:8080 is the default address)
+1. Run the web application and open it in a web browser (localhost:8080 is the default address)
 2. Enter "Jane Doe" into the name field
 3. Enter "Doestreet 15" into the address field and click "Submit"
 4. Click "View signups"
@@ -53,7 +53,7 @@ Having names and addresses be publically viewable is generally not a good idea. 
 Showing too much to the wrong people can end very badly.
 Considering user privacy in this way should be done through all stages of planning and implementation.
 
-This can be fixed simply by modifying "signups.html" not to show the users address (and maybe show only part of their full name) and rethinking how you want the program to work.
+This can be fixed simply by modifying "signups.html" not to show the user's address (and maybe show only part of their full name) and rethinking how you want the program to work.
 
 ## Issue: Broken Access Control (OWASP A5)
 Steps to reproduce:
@@ -66,7 +66,7 @@ Steps to reproduce:
 7. All of Janes private info is visible to anybody with the link. Guessing these links is easy because they are sequential numbers.
 
 ### Fix:
-Check that the users session id against the session id of the user trying to access the page. Display page to only the valid session id.
+Check the user's session id against the session id of the user trying to access the page. Display page to only the valid session id.
 It may also be wise to change the sequential integer to a large random number.
 
 ## Issue: XSS (OWASP A7)
