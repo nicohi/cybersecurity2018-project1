@@ -27,7 +27,7 @@ Steps to reproduce:
 1. Run webapplication and open it in a web browser (localhost:8080 is the default address)
 2. Click "View signups"
 3. Enter "test" into the "Name" field
-4. Enter "'); DROP TABLE Message; '" into the "Message" field
+4. Enter " '); DROP TABLE Message; ' " into the "Message" field
 5. The page should refresh and all messages disappear. The message feature is now unusable until the server program is restarted (table Message needs to be made again)
 6. The user can enter any arbitrary SQL commands that are then interpreted by the server
 
