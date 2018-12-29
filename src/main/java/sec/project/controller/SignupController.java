@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import sec.project.db.MessageDAO;
+import org.springframework.web.bind.annotation.PathVariable;
 import sec.project.domain.Message;
 import sec.project.domain.Signup;
 import sec.project.repository.SignupRepository;
@@ -41,7 +42,14 @@ public class SignupController {
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String submitForm(@RequestParam String name, @RequestParam String address, @RequestParam String secret) {
-        signupRepository.save(new Signup(name, address, secret));
+		Signup s = new Signup(name, address, secret);
+        signupRepository.save(s);
+        return "redirect:/done/" + s.getId();
+    }
+
+    @RequestMapping(value = "/done/{id}", method = RequestMethod.GET)
+    public String done(Model model, @PathVariable Long id) {
+		model.addAttribute("signup", signupRepository.getOne(id));
         return "done";
     }
 
