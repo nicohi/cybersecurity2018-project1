@@ -1,13 +1,14 @@
 # Cybersecurity 2018 project 1
 [link to project](https://github.com/nicohi/cybersecurity2018-project1)
 
+I suggest reading this report from github, because it has been formatted using markdown.
 [link to report](https://github.com/nicohi/cybersecurity2018-project1/blob/master/REPORT.md)
 
-I suggest reading this report from github because of the markdown formatting.
 The template project has been expanded to include five major security flaws from OWASPs top ten (documented below).
-There are many things wrong with this program.
+The program features basic functionality which allows users to input their information, sign up, view other attendees, and leave messages for others.
+There are many things wrong with this program. I tried to focus only on the most severe and problematic issues. 
 
-The purpose of the "Bank details" field is to serve as a placeholder for some kind of secret information that should be impossible for other users of the app to access.
+The purpose of the "Bank details" field is to serve as a placeholder for some kind of secret information that should be impossible for other users of the app to access. Inputting "Bank details" as a string does not really make sense.
 
 # Most notable security flaws and their fixes
 
@@ -22,7 +23,7 @@ Steps to reproduce:
 
 ### Fix:
 Use prepared statements in place of executeQuery().
-Another option is to remove all "'" symbols before executing the query (prepared statements are probably a better idea though).
+Another option is to remove all single quote symbols before executing the query (prepared statements are probably a better idea though).
 
 ## Issue: Sensitive Data Exposure (OWASP A3)
 Steps to reproduce:
