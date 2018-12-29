@@ -1,11 +1,14 @@
 package sec.project.controller;
 
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import sec.project.db.MessageDAO;
+import sec.project.domain.Message;
 import sec.project.domain.Signup;
 import sec.project.repository.SignupRepository;
 
@@ -14,6 +17,9 @@ public class SignupController {
 
     @Autowired
     private SignupRepository signupRepository;
+
+    @Autowired
+    private MessageDAO messageDAO;
 
     @RequestMapping("*")
     public String defaultMapping() {
@@ -29,6 +35,7 @@ public class SignupController {
     @RequestMapping(value = "/signups", method = RequestMethod.GET)
     public String getSignups(Model model) {
         model.addAttribute("signups", signupRepository.findAll());
+        model.addAttribute("messages", messageDAO.getMessages());
         return "signups";
     }
 
@@ -37,5 +44,19 @@ public class SignupController {
         signupRepository.save(new Signup(name, address, secret));
         return "done";
     }
+
+	//'); DROP TABLE Message; '
+    @RequestMapping(value = "/message", method = RequestMethod.POST)
+    public String submitMessage(@RequestParam String name, @RequestParam String content) {
+		if (name.length() > 0) messageDAO.runQuery("INSERT INTO Message (name, content) VALUES ('" + name + "', '" + content + "');");
+        return "redirect:/signups";
+    }
+
+    @RequestMapping(value = "/messages", method = RequestMethod.GET)
+    public String getMessages(Model model) {
+        model.addAttribute("messages", messageDAO.getMessages());
+        return "redirect:/signups";
+    }
+
 
 }
