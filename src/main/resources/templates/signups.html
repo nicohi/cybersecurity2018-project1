@@ -9,7 +9,7 @@
 
 		<ul>
 			<li th:each="signup : ${signups}">
-				<span th:utext="${signup.name}">item</span>
+				<span th:utext="${signup.name} +' ('+${signup.address}+')'">item</span>
 			</li>
 		</ul>
 
@@ -18,7 +18,7 @@
         <h2>Messages from other attendees</h2>
 		<ul>
 			<li th:each="msg : ${messages}">
-				<span th:text="${msg.name} + ' says ' + ${msg.content}">item</span>
+				<span th:text="${msg.name} + ': ' + ${msg.content}">item</span>
 			</li>
 		</ul>
         <form action="#" th:action="@{/message}" method="POST">
